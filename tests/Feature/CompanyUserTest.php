@@ -5,9 +5,12 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Company;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class CompanyUserTest extends TestCase
 {
+    use DatabaseTransactions;
+
     public function test_admin_can_access_company_users_page()
     {
         $company = Company::factory()->create();

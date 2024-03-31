@@ -2,12 +2,14 @@
 
 namespace Tests\Feature\Auth;
 
+use Tests\TestCase;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
-use Tests\TestCase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class AuthenticationTest extends TestCase
 {
+    use DatabaseTransactions;
 
     public function test_login_screen_can_be_rendered(): void
     {
