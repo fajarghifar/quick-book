@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Enums\Role;
 use App\Models\User;
+use App\Models\Company;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,10 +19,17 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
         ]);
 
-        User::factory()->create([
+        User::factory()->admin()->create([
             'name' => 'Admin',
-            'email' => 'admin@admin.com',
-            'role_id' => Role::ADMINISTRATOR->value,
+            'email' => 'admin@email.com',
+        ]);
+
+        $company = Company::factory()->create();
+
+        User::factory()->companyOwner()->create([
+            'name' => 'Owner',
+            'email' => 'owner@email.com',
+            'company_id' => $company->id,
         ]);
     }
 }
