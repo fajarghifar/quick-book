@@ -38,9 +38,7 @@
                         </div>
 
                         <div class="mt-4">
-                            @if($activity->photo)
-                                <img src="{{ asset('storage/' . $activity->photo) }}" alt="{{ $activity->name }}" class="mb-4 h-48 w-48 rounded-xl">
-                            @endif
+                            <img src="{{ asset($activity->preview) }}" alt="{{ $activity->name }}" class="mb-4 h-48 w-48 rounded-xl">
 
                             <x-input-label for="image" value="Photo" />
                             <x-text-input id="image" name="image" type="file" class="mt-1 block w-full" />

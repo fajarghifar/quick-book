@@ -84,6 +84,7 @@ class CompanyActivityTest extends TestCase
         ]);
 
         Storage::disk('activities')->assertExists($file->hashName());
+        Storage::disk('activities')->assertExists('thumbs/' . $file->hashName());
     }
 
     public function test_cannon_upload_non_image_file()
