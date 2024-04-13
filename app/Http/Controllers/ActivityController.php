@@ -9,6 +9,6 @@ class ActivityController extends Controller
 {
     public function show(Activity $activity)
     {
-        return view('companies.activities.show', compact('activity'));
+        return view('activities.show', compact('activity'));
     }
 }
