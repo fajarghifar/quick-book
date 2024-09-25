@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Service;
+use App\Models\Employee;
+use App\Models\EmployeeService;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,11 +14,36 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $employees = Employee::factory(5)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        $services = [
+            ['title' => 'Haircut', 'slug' => 'haircut', 'duration' => 30, 'price' => 5000],
+            ['title' => 'Hair and Beard', 'slug' => 'hair-and-beard', 'duration' => 45, 'price' => 8000],
+            ['title' => 'Beard Trim', 'slug' => 'beard-trim', 'duration' => 20, 'price' => 3000],
+            ['title' => 'Hair Coloring', 'slug' => 'hair-coloring', 'duration' => 90, 'price' => 12000],
+            ['title' => 'Hair Spa', 'slug' => 'hair-spa', 'duration' => 60, 'price' => 10000],
+        ];
+
+        $createdServices = [];
+        foreach ($services as $serviceData) {
+            $createdServices[] = Service::create($serviceData);
+        }
+
+        foreach ($employees as $employee) {
+            // Mengambil layanan acak (antara 1 hingga 3 layanan berbeda)
+            $randomServices = $this->getRandomServices($createdServices, rand(1, 3));
+
+            foreach ($randomServices as $service) {
+                EmployeeService::create([
+                    'employee_id' => $employee->id,
+                    'service_id' => $service->id,
+                ]);
+            }
+        }
+    }
+
+    private function getRandomServices(array $services, int $count): array
+    {
+        return collect($services)->random($count)->all();
     }
 }
