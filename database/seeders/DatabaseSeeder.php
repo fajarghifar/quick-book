@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Service;
 use App\Models\Employee;
+use App\Models\Schedule;
 use App\Models\EmployeeService;
 use Illuminate\Database\Seeder;
 
@@ -30,7 +31,6 @@ class DatabaseSeeder extends Seeder
         }
 
         foreach ($employees as $employee) {
-            // Mengambil layanan acak (antara 1 hingga 3 layanan berbeda)
             $randomServices = $this->getRandomServices($createdServices, rand(1, 3));
 
             foreach ($randomServices as $service) {
@@ -39,6 +39,10 @@ class DatabaseSeeder extends Seeder
                     'service_id' => $service->id,
                 ]);
             }
+
+            Schedule::factory()->create([
+                'employee_id' => $employee->id,
+            ]);
         }
     }
 
