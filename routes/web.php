@@ -2,25 +2,15 @@
 
 use Carbon\Carbon;
 use App\Livewire\Home;
-use App\Models\Service;
-use App\Models\Employee;
-use App\Booking\SlotGenerator;
+use App\Livewire\Checkout;
 use App\Livewire\EmployeeShow;
-use App\Booking\ScheduleAvailability;
+use App\Livewire\AppointmentShow;
 use Illuminate\Support\Facades\Route;
-use App\Booking\ServiceSlotAvailability;
 
 Carbon::setTestNow(now()->setTimeFromTimeString('10:00'));
 
 Route::get('/', Home::class)->name('home');
 Route::get('/employees/{employee:slug}', EmployeeShow::class)->name('employees.show');
 
-Route::get('/periods', function () {
-    $employees = Employee::get();
-    $service = Service::find(1);
-
-    $availability = (new ServiceSlotAvailability($employees, $service))
-        ->forPeriod(now()->startOfDay(), now()->addDay()->endOfDay());
-
-    dd($availability);
-});
+Route::get('/checkout/{service:slug}/{employee:slug?}', Checkout::class)->name('checkout');
+Route::get('/appointments/{appointment:uuid}', AppointmentShow::class)->name('appointments.show');

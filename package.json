@@ -12,5 +12,9 @@
         "postcss": "^8.4.47",
         "tailwindcss": "^3.4.13",
         "vite": "^5.0"
+    },
+    "dependencies": {
+        "@easepick/bundle": "^1.2.1",
+        "pluralize": "^8.0.0"
     }
 }

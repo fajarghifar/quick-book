@@ -58,7 +58,8 @@ class ServiceSlotAvailability
             $date->slots = $date->slots->filter(function (Slot $slot) {
                 return $slot->hasEmployees();
             });
-            return true;
+
+            return $date->slots->isNotEmpty();
         });
     }
 
