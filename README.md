@@ -5,7 +5,7 @@
 ![Screenshot](https://github.com/user-attachments/assets/6deaf0dc-e290-439c-88cf-0fbb98c8e260)
 
 ## 💀 Design Database
-![Design Database](https://github.com/user-attachments/assets/5f2f3557-cc77-489e-90f6-04d1f2f7899e)
+![Design Database](https://github.com/user-attachments/assets/59c54001-ebd6-4a4b-978a-998fa1e5972e)
 
 ## 🚀 How to Use
 1.  **Clone Repository or Download**
